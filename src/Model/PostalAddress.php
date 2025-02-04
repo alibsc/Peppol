@@ -1,5 +1,4 @@
 <?php
-
 namespace JGI\Peppol\Model;
 
 class PostalAddress
@@ -8,6 +7,11 @@ class PostalAddress
      * @var string|null
      */
     private $streetName;
+
+    /**
+     * @var string|null
+     */
+    private $addressLine;
 
     /**
      * @var string|null
@@ -43,6 +47,22 @@ class PostalAddress
     public function setStreetName(?string $streetName): void
     {
         $this->streetName = $streetName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAddressLine(): ?string
+    {
+        return $this->addressLine;
+    }
+
+    /**
+     * @param string|null $addressLine
+     */
+    public function setAddressLine(?string $addressLine): void
+    {
+        $this->addressLine = $addressLine;
     }
 
     /**

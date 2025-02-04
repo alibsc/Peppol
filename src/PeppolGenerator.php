@@ -175,6 +175,9 @@ class PeppolGenerator
             $streetName->appendChild($peppolDocument->createTextNode($addressModel->getStreetName()));
             $postalAddress->appendChild($streetName);
         }
+        if ($addressModel->getAddressLine()) {
+            $postalAddress->appendChild($peppolDocument->createElement('cbc:AddressLine', $addressModel->getAddressLine()));
+        }
         if ($addressModel->getAdditionalStreetName()) {
             $postalAddress->appendChild($peppolDocument->createElement('cbc:AdditionalStreetName', $addressModel->getAdditionalStreetName()));
         }
