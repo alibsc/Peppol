@@ -1,11 +1,15 @@
 {
-  "name": "jongotlin/peppol",
+  "name": "alibsc/peppol",
   "license": "MIT",
   "type": "package",
   "authors": [
     {
       "name": "Jon Gotlin",
       "email": "jon@jon.se"
+    },
+    {
+        "name": "Andris Ludriks",
+        "email": "al@ibsc.lv"
     }
   ],
   "autoload": {
