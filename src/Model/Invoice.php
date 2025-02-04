@@ -117,6 +117,11 @@ class Invoice
     private $payableRoundingAmount = 0;
 
     /**
+    * @var PaymentMeans|null
+    */
+    private $paymentMeans;
+
+    /**
      * @return string|null
      */
     public function getCustomizationId(): ?string
@@ -466,5 +471,15 @@ class Invoice
     public function setPayableRoundingAmount(float $payableRoundingAmount): void
     {
         $this->payableRoundingAmount = $payableRoundingAmount;
+    }
+
+    public function setPaymentMeans($paymentMeans): void
+    {
+        $this->paymentMeans = $paymentMeans;
+    }
+
+    public function getPaymentMeans()
+    {
+        return $this->paymentMeans;
     }
 }

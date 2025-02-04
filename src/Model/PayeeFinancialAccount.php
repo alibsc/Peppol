@@ -7,6 +7,10 @@ class PayeeFinancialAccount
     private $id;
     private $name;
 
+    /**
+    * @var FinancialInstitutionBranch|null
+    */
+    private $financialInstitution;
 
     public function getId(): ?string
     {
@@ -26,5 +30,15 @@ class PayeeFinancialAccount
     public function setName(?string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getFinancialInstitution(): ?FinancialInstitutionBranch
+    {
+        return $this->financialInstitution;
+    }
+
+    public function setFinancialInstitution(?FinancialInstitutionBranch $financialInstitution): void
+    {
+        $this->financialInstitution = $financialInstitution;
     }
 }

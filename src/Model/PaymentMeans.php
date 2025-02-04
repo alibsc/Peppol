@@ -7,6 +7,11 @@ class PaymentMeans
     private $paymentMeansCode;
     private $paymentID;
 
+    /**
+ * @var PayeeFinancialAccount|null
+ */
+    private $payeeFinancialAccount;
+
     public function getPaymentMeansCode(): ?string
     {
         return $this->paymentMeansCode;
@@ -25,5 +30,15 @@ class PaymentMeans
     public function setPaymentID(?string $paymentID): void
     {
         $this->paymentID = $paymentID;
+    }
+
+    public function getPayeeFinancialAccount(): ?PayeeFinancialAccount
+    {
+        return $this->payeeFinancialAccount;
+    }
+
+    public function setPayeeFinancialAccount(?PayeeFinancialAccount $payeeFinancialAccount): void
+    {
+        $this->payeeFinancialAccount = $payeeFinancialAccount;
     }
 }

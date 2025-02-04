@@ -75,6 +75,10 @@ class PeppolGenerator
             );
         }
 
+        $root->appendChild(
+            $this->createPayment($peppolDocument, $invoice)
+        );
+
         $peppolDocument->appendChild($root);
 
         return $peppolDocument;
@@ -311,22 +315,22 @@ class PeppolGenerator
         return $taxTotal;
     }
 
-    private function createPayment(PeppolDocument $peppolDocument, Invoice $invoice, PaymentMeans $paymentMeans,PayeeFinancialAccount $payeeFinancialAccount, FinancialInstitutionBranch $financialInstitutionBranch): \DOMNode
+    private function createPayment(PeppolDocument $peppolDocument, Invoice $invoice): \DOMNode
     {
         $paymentMeansWrap = $peppolDocument->createElement('cac:PaymentMeans');
 
-        $pmCode = $peppolDocument->createElement('cbc:PaymentMeansCode', $paymentMeans->getPaymentMeansCode());
+        $pmCode = $peppolDocument->createElement('cbc:PaymentMeansCode', $invoice->getPaymentMeans()->getPaymentMeansCode());
         $paymentMeansWrap->appendChild($pmCode);
 
         $payeeWrap = $peppolDocument->createElement('cac:PayeeFinancialAccount');
-        $payeeWrap->appendChild($peppolDocument->createElement('cbc:ID', $payeeFinancialAccount->getId()));
+        $payeeWrap->appendChild($peppolDocument->createElement('cbc:ID', $invoice->getPaymentMeans()->getPayeeFinancialAccount()->getId()));
 
         $finWrap = $peppolDocument->createElement('cac:FinancialInstitutionBranch');
-        $finWrap->appendChild($peppolDocument->createElement('cbc:ID', $financialInstitutionBranch->getId()));
+        $finWrap->appendChild($peppolDocument->createElement('cbc:ID', $invoice->getPaymentMeans()->getPayeeFinancialAccount()->getFinancialInstitution()->getId()));
 
         $payeeWrap->appendChild($finWrap);
         $paymentMeansWrap->appendChild($payeeWrap);
 
-        return $paymentMeans;
+        return $paymentMeansWrap;
     }
 }
