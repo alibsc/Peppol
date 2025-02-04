@@ -19,6 +19,11 @@ class Item
      */
     private $taxCategory;
 
+    private $buyersItemIdentification;
+    private $sellersItemIdentification;
+    private $standardItemIdentification;
+    private $originCountry;
+
     /**
      * @return string|null
      */
@@ -65,5 +70,45 @@ class Item
     public function setTaxCategory(?TaxCategory $taxCategory): void
     {
         $this->taxCategory = $taxCategory;
+    }
+
+    public function getBuyersItemIdentification(): ?string
+    {
+        return $this->buyersItemIdentification;
+    }
+
+    public function setBuyersItemIdentification(?string $buyersItemIdentification): void
+    {
+        $this->buyersItemIdentification = $buyersItemIdentification;
+    }
+
+    public function getSellersItemIdentification(): ?string
+    {
+        return $this->sellersItemIdentification;
+    }
+
+    public function setSellersItemIdentification(?string $sellersItemIdentification): void
+    {
+        $this->sellersItemIdentification = $sellersItemIdentification;
+    }
+
+    public function getStandardItemIdentification(): ?string
+    {
+        return $this->standardItemIdentification;
+    }
+
+    public function setStandardItemIdentification(?string $standardItemIdentification): void
+    {
+        $this->standardItemIdentification = $standardItemIdentification;
+    }
+
+    public function getOriginCountry(): ?string
+    {
+        return $this->originCountry;
+    }
+
+    public function setOriginCountry(?string $originCountry): void
+    {
+        $this->originCountry = $originCountry;
     }
 }

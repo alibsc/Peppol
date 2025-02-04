@@ -131,6 +131,22 @@ class PeppolGenerator
             $item->appendChild($this->createTaxCategory('cac:ClassifiedTaxCategory', $peppolDocument, $invoiceLineModel->getItem()->getTaxCategory()));
         }
 
+        if ($invoiceLineModel->getItem()->getBuyersItemIdentification()) {   
+            $item->appendChild($peppolDocument->createElement('cbc:BuyersItemIdentification', $invoiceLineModel->getItem()->getBuyersItemIdentification()));
+        }
+
+        if ($invoiceLineModel->getItem()->getSellersItemIdentification()) {
+            $item->appendChild($peppolDocument->createElement('cbc:SellersItemIdentification', $invoiceLineModel->getItem()->getSellersItemIdentification()));
+        }
+
+        if ($invoiceLineModel->getItem()->getStandardItemIdentification()) {
+            $item->appendChild($peppolDocument->createElement('cbc:StandardItemIdentification', $invoiceLineModel->getItem()->getStandardItemIdentification()));
+        }
+
+        if ($invoiceLineModel->getItem()->getOriginCountry()) {
+            $item->appendChild($peppolDocument->createElement('cbc:OriginCountry', $invoiceLineModel->getItem()->getOriginCountry()));
+        }   
+
         $invoiceLine->appendChild($item);
 
         $price = $peppolDocument->createElement('cac:Price');
