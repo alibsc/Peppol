@@ -4,9 +4,12 @@ namespace JGI\Peppol;
 
 use JGI\Peppol\Model\{
     AllowanceCharge,
+    FinancialInstitutionBranch,
     Invoice,
     InvoiceLine,
     Party,
+    PayeeFinancialAccount,
+    PaymentMeans,
     TaxCategory
 };
 
@@ -306,5 +309,24 @@ class PeppolGenerator
 
 
         return $taxTotal;
+    }
+
+    private function createPayment(PeppolDocument $peppolDocument, Invoice $invoice, PaymentMeans $paymentMeans,PayeeFinancialAccount $payeeFinancialAccount, FinancialInstitutionBranch $financialInstitutionBranch): \DOMNode
+    {
+        $paymentMeansWrap = $peppolDocument->createElement('cac:PaymentMeans');
+
+        $pmCode = $peppolDocument->createElement('cbc:PaymentMeansCode', $paymentMeans->getPaymentMeansCode());
+        $paymentMeansWrap->appendChild($pmCode);
+
+        $payeeWrap = $peppolDocument->createElement('cac:PayeeFinancialAccount');
+        $payeeWrap->appendChild($peppolDocument->createElement('cbc:ID', $payeeFinancialAccount->getId()));
+
+        $finWrap = $peppolDocument->createElement('cac:FinancialInstitutionBranch');
+        $finWrap->appendChild($peppolDocument->createElement('cbc:ID', $financialInstitutionBranch->getId()));
+
+        $payeeWrap->appendChild($finWrap);
+        $paymentMeansWrap->appendChild($payeeWrap);
+
+        return $paymentMeans;
     }
 }
