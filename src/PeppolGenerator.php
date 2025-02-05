@@ -94,9 +94,11 @@ class PeppolGenerator
         $amount->setAttributeNodeNS(new \DOMAttr('currencyID', $invoice->getCurrency()));
         $allowanceCharge->appendChild($amount);
 
-        $allowanceCharge->appendChild(
-            $this->createTaxCategory('cac:TaxCategory', $peppolDocument, $allowanceChargeModel->getTaxCategory())
-        );
+        if($allowanceChargeModel->getTaxCategory()){
+            $allowanceCharge->appendChild(
+                $this->createTaxCategory('cac:TaxCategory', $peppolDocument, $allowanceChargeModel->getTaxCategory())
+            );
+        }
 
         return $allowanceCharge;
     }
@@ -171,6 +173,13 @@ class PeppolGenerator
         $taxCategory = $peppolDocument->createElement($name);
         $taxCategory->appendChild($peppolDocument->createElement('cbc:ID', $taxCategoryModel->getId()));
         $taxCategory->appendChild($peppolDocument->createElement('cbc:Percent', $taxCategoryModel->getPercent()));
+
+        if($taxCategoryModel->getTaxExemptionReasonCode()) {
+            $taxCategory->appendChild($peppolDocument->createElement('cbc:TaxExemptionReasonCode', $taxCategoryModel->getTaxExemptionReasonCode()));
+        }
+        if($taxCategoryModel->getTaxExemptionReason()) {
+            $taxCategory->appendChild($peppolDocument->createElement('cbc:TaxExemptionReason', $taxCategoryModel->getTaxExemptionReason()));
+        }
 
         $taxCategory
             ->appendChild($peppolDocument->createElement('cac:TaxScheme'))

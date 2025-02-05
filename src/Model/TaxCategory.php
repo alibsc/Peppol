@@ -24,6 +24,16 @@ class TaxCategory
     private $taxSchemeId;
 
     /**
+     * @var string|null
+     */
+    private $taxExemptionReasonCode;
+
+    /**
+     * @var string|null
+     */
+    private $taxExemptionReason;
+
+    /**
      * @return string|null
      */
     public function getId(): ?string
@@ -69,5 +79,37 @@ class TaxCategory
     public function setTaxSchemeId(?string $taxSchemeId): void
     {
         $this->taxSchemeId = $taxSchemeId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTaxExemptionReasonCode(): ?string
+    {
+        return $this->taxExemptionReasonCode;
+    }   
+
+    /**
+     * @param string|null $taxExemptionReasonCode
+     */
+    public function setTaxExemptionReasonCode(?string $taxExemptionReasonCode): void
+    {
+        $this->taxExemptionReasonCode = $taxExemptionReasonCode;
+    }   
+
+    /**
+     * @return string|null
+     */
+    public function getTaxExemptionReason(): ?string
+    {
+        return $this->taxExemptionReason;
+    }
+
+    /**
+     * @param string|null $taxExemptionReason
+     */
+    public function setTaxExemptionReason(?string $taxExemptionReason): void
+    {
+        $this->taxExemptionReason = $taxExemptionReason;
     }
 }

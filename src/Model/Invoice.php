@@ -117,6 +117,11 @@ class Invoice
     private $payableRoundingAmount = 0;
 
     /**
+     * @var string|null
+     */
+    private $note;
+
+    /**
     * @var PaymentMeans|null
     */
     private $paymentMeans;
@@ -481,5 +486,15 @@ class Invoice
     public function getPaymentMeans()
     {
         return $this->paymentMeans;
+    }
+
+    public function setNote(?string $note): void
+    {
+        $this->note = $note;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
     }
 }
